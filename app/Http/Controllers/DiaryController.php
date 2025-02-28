@@ -8,6 +8,6 @@ class DiaryController extends Controller
     public function index()
     {
         $diaries = Diary::all();
-        return view("diaries.index", compact("diaries"));
+        return view("diary.index", compact("diaries"));
     }
 }
