@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+<x-navigation></x-navigation> 
 <h1>Sveisksks LARAVEL</h1>
 
 </body>

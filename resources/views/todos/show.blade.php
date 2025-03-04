@@ -7,8 +7,14 @@
     <title>{{ $title ?? "Uzdevumi un dienasgrāmata" }}</title>
 </head>
 <body>
-   <?php $title ="whywyhw";?>
-<x-navigation></x-navigation> 
-    <h1>whwhwhwhwhy</h1>
+
+<x-layout>
+  <x-slot:title>
+    {{ $todo->content }}
+  </x-slot:title>
+  <h1>{{ $todo->content }}</h1>
+  <p>Izpildīts: {{ $todo->completed ? "Jā" : "Nē" }}</p>
+</x-layout>
+
 </body>
 </html>

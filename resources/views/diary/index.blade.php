@@ -7,11 +7,13 @@
     <title>Dienasgrmatas titlez</title>
 </head>
 <body>
-    
+
+<x-navigation></x-navigation>
+
 <h1>Visi dienasgrmatas titlez</h1>
 <ul>
   @foreach ($diaries as $diary)
-    <li>{{ $diary->title }}</li>
+  <li><a href="/diaries/{{ $diary->id }}">{{ $diary->title }}</a></li>
   @endforeach
 </ul>
 
