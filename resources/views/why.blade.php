@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>{{ $title ?? "Uzdevumi un dienasgrāmata" }}</title>
-</head>
-<body>
-   <?php $title ="whywyhw";?>
-<x-navigation></x-navigation> 
-    <h1>whwhwhwhwhy</h1>
-</body>
-</html>
+<x-layout>
+  <x-slot:title>
+    wywyhywhyw
+  </x-slot:title>
+  <h1>whwhwhwhwhy</h1>
+</x-layout>
