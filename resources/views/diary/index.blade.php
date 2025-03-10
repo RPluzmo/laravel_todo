@@ -1,4 +1,7 @@
 <x-layout>
+  <x-slot:title>
+      Visas dienasgrāmatas
+  </x-slot:title>
   <h1>Visi dienasgrmatas titlez</h1>
     <ul>
       @foreach ($diaries as $diary)
