@@ -33,5 +33,24 @@ class DiaryController extends Controller
         ]);
         return redirect("/diaries");
     }
-    
+    public function edit(Diary $diary) {
+        return view("diary.edit", compact("diary"));
+    }
+
+    public function update(Request $request, Diary $diary) {
+        $validated = $request->validate([
+            "title" => ["required", "max:100"],
+            "body" => ["required" ],
+            "date" => ["required","date"]
+        ]);
+        $diary->title = $validated["title"];
+        $diary->body = $validated["body"];
+        $diary->date = $validated["date"];
+        $diary->save();
+        return view("diary.show", compact("diary"));
+    }
+    public function destroy(Diary $diary) {
+        $diary->delete();
+        return redirect("/diaries");
+    }
 }
