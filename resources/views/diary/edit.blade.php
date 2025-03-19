@@ -17,7 +17,7 @@
             </li>
             <li>
                 <label>Body saturs:
-                    <textarea name="body" rows="1">{{ old('body', $diary->body) }}</textarea>
+                    <textarea name="body"  rows="1">{{ old('body', $diary->body) }}</textarea>
                     @error("body")
                         <p>{{ $message }}</p>
                     @enderror
