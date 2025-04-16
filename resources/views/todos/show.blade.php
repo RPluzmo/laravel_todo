@@ -4,8 +4,8 @@
   </x-slot:title>
     <h1>{{ $todo->content }}</h1>
     <p>Izpildīts: {{ $todo->completed ? "Jā" : "Nē" }}</p>
-    <a href="/todos/{{$todo->id}}/edit">Rediģēt ierakstu</a>
-    <form action="/todos/{{ $todo->id }}" method="POST">
+    <a href="{{ route('todos.edit', $todo->id) }}">Rediģēt ierakstu</a>
+    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST">
         @csrf
         @method('DELETE')
         <button>Dzēst</button>

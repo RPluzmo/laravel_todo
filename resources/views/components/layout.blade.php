@@ -8,6 +8,14 @@
 </head>
 <body>
     <x-navigation></x-navigation>
+
+	@auth
+		<form action="/logout" method="POST">
+				@csrf
+				<button type="submit">Izrakstīties</button>
+		</form>
+	@endauth
+
     {{ $slot }}
 </body>
 </html>
