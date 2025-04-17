@@ -30,6 +30,6 @@ class SessionController extends Controller
           ]);
         }
         $request->session()->regenerate();
-        return redirect('/bonjour'); 
+        return redirect('/'); 
     }
 }

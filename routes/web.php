@@ -9,14 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('/bonjour');
+        return view('bonjour');
     }
     return view('welcome');
 })->name("welcome");
 
-Route::get('/bonjour', function () {
-    return view('bonjour');
-})->name("bonjour")->middleware('auth');
 
 Route::get('/why', function () {
     return view('why');
