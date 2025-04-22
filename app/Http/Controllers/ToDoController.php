@@ -7,12 +7,15 @@ use App\Models\ToDo;
 class ToDoController extends Controller
 {
     public function index()
-    {
-        $todos = ToDo::all();
+    {// TE BIJA $todos = ToDo::all();
+        $todos = auth()->user()->todos;
         return view("todos.index", compact("todos"));
     }
    
     public function show(ToDo $todo) {
+        if ($todo->user_id !== auth()->id()) {
+            abort(403);
+        }
         return view("todos.show", compact("todo"));
     }
 
@@ -27,16 +30,24 @@ class ToDoController extends Controller
         ]);
         ToDo::create([
             "content" => $request->content,
-            "completed" => false
+            "completed" => false,
+            'user_id' => auth()->id()
+
         ]);
         return redirect("/todos");
         }
 
     public function edit(ToDo $todo) {
+        if ($todo->user_id !== auth()->id()) {
+            abort(403);
+        }
         return view("todos.edit", compact("todo"));
     }
 
     public function update(Request $request, ToDo $todo) {
+        if ($todo->user_id !== auth()->id()) {
+            abort(403);
+        }
         $validated = $request->validate([
             "content" => ["required", "max:255"],
             "completed" => ["boolean"]
@@ -47,6 +58,9 @@ class ToDoController extends Controller
         return view("todos.show", compact("todo"));
     }
     public function destroy(ToDo $todo) {
+        if ($todo->user_id !== auth()->id()) {
+            abort(403);
+        }
         $todo->delete();
         return redirect("/todos");
     }

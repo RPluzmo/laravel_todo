@@ -6,13 +6,16 @@ use App\Models\Diary;
 class DiaryController extends Controller
 {
     public function index()
-    {
-        $diaries = Diary::all();
+    {//UN TE ARĪ mkay $diaries = Diary::all();
+        $diaries = auth()->user()->diaries;
         return view("diary.index", compact("diaries"));
     }
 
     
     public function show(Diary $diary) {
+        if ($diary->user_id !== auth()->id()) {
+            abort(403);
+        }
         return view("diary.show", compact("diary"));
       }
 
@@ -29,15 +32,22 @@ class DiaryController extends Controller
         Diary::create([
             "title" => $request->title,
             "body" => $request->body,
-            "date" => $request->date
+            "date" => $request->date,
+            "user_id" => auth()->id()
         ]);
         return redirect("/diaries");
     }
     public function edit(Diary $diary) {
+        if ($diary->user_id !== auth()->id()) {
+            abort(403);
+        }
         return view("diary.edit", compact("diary"));
     }
 
     public function update(Request $request, Diary $diary) {
+        if ($diary->user_id !== auth()->id()) {
+            abort(403);
+        }
         $validated = $request->validate([
             "title" => ["required", "max:100"],
             "body" => ["required" ],
@@ -50,6 +60,9 @@ class DiaryController extends Controller
         return view("diary.show", compact("diary"));
     }
     public function destroy(Diary $diary) {
+        if ($diary->user_id !== auth()->id()) {
+            abort(403);
+        }
         $diary->delete();
         return redirect("/diaries");
     }
